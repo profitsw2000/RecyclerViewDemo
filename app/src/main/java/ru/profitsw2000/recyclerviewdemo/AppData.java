@@ -1,6 +1,7 @@
 package ru.profitsw2000.recyclerviewdemo;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,23 @@ public class AppData {
         clubNames = context.getResources().getStringArray(R.array.names_of_clubs)   ;
         clubCitys = context.getResources().getStringArray(R.array.cities_of_clubs)  ;
         countrys = context.getResources().getStringArray(R.array.countries_of_clubs)    ;
-        logoIDs = context.getResources().getIntArray(R.array.fc_logos)  ;
+        logoIDs = getImageArray(context)  ;
 
         league = new ArrayList<FootballClub>()  ;
         for (int i = 0; i < clubNames.length; i++) {
             FootballClub footballClub = new FootballClub(clubNames[i], clubCitys[i], countrys[i], logoIDs[i]);
             league.add(footballClub)    ;
         }
+    }
+
+    private int[] getImageArray(Context context){
+        TypedArray pictures = context.getResources().obtainTypedArray(R.array.fc_logos);
+        int length = pictures.length();
+        int[] answer = new int[length];
+        for(int i = 0; i < length; i++){
+            answer[i] = pictures.getResourceId(i, 0);
+        }
+        return answer;
     }
 
     public static AppData getAppData(Context context) {

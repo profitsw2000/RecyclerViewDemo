@@ -38,11 +38,14 @@ public class FootballClubAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        layoutInflater = layoutInflater.from(this.context)  ;
+
+        if (convertView == null){
+            layoutInflater = layoutInflater.from(this.context)  ;
+            convertView = layoutInflater.inflate(R.layout.item_view, null)  ;
+        }
 
         final FootballClub footballClub = league.get(position);
 
-        convertView = layoutInflater.inflate(R.layout.item_view, null)  ;
         ((TextView)convertView.findViewById(R.id.club_name)).setText(footballClub.getClubName());
         ((TextView)convertView.findViewById(R.id.city_of_club)).setText(footballClub.getClubCity());
         ((TextView)convertView.findViewById(R.id.country)).setText(footballClub.getCountry());
