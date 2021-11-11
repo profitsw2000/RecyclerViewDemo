@@ -39,9 +39,21 @@ public class FootballClubAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+            ClubViewHolder clubViewHolder   ;
+
         if (convertView == null){
             layoutInflater = layoutInflater.from(this.context)  ;
             convertView = layoutInflater.inflate(R.layout.item_view, null)  ;
+
+            clubViewHolder = new ClubViewHolder()   ;
+            clubViewHolder.textViewClubName = (TextView)convertView.findViewById(R.id.club_name)  ;
+            clubViewHolder.textViewCity = (TextView)convertView.findViewById(R.id.city_of_club) ;
+            clubViewHolder.textViewCountry = (TextView)convertView.findViewById(R.id.country)   ;
+            clubViewHolder.imageViewClubLogo = (ImageView)convertView.findViewById(R.id.club_logo)  ;
+
+            convertView.setTag(clubViewHolder);
+        } else {
+            clubViewHolder = (ClubViewHolder) convertView.getTag()  ;
         }
 
         final FootballClub footballClub = league.get(position);
@@ -52,5 +64,12 @@ public class FootballClubAdapter extends BaseAdapter {
         ((ImageView)convertView.findViewById(R.id.club_logo)).setImageResource(footballClub.getClubLogo());
 
         return convertView;
+    }
+
+    private static class ClubViewHolder {
+        public TextView textViewClubName    ;
+        public TextView textViewCity    ;
+        public TextView textViewCountry    ;
+        public ImageView imageViewClubLogo    ;
     }
 }
