@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="names_of_clubs">
+        <item>Ajax</item>
+        <item>Bari</item>
+        <item>Bayer</item>
+        <item>Bayern</item>
+        <item>Borussia</item>
+        <item>Botafogo</item>
+        <item>Corinthians</item>
+        <item>Liverpool</item>
+        <item>Milan</item>
+        <item>Munchester United</item>
+        <item>Newcastle United</item>
+        <item>Roma</item>
+        <item>Valencia</item>
+        <item>Vasco da gama</item>
+    </string-array>
+
+    <string-array name="cities_of_clubs">
+        <item>Amsterdam</item>
+        <item>Bari</item>
+        <item>Leverkusen</item>
+        <item>Munich</item>
+        <item>Dortmund</item>
+        <item>Rio de Janeiro</item>
+        <item>Sao Paulo</item>
+        <item>Liverpool</item>
+        <item>Milan</item>
+        <item>Munchester</item>
+        <item>Newcastle</item>
+        <item>Rome</item>
+        <item>Valencia</item>
+        <item>Rio de Janeiro</item>
+    </string-array>
+
+    <string-array name="countries_of_clubs">
+        <item>Netherland</item>
+        <item>Italy</item>
+        <item>Germany</item>
+        <item>Germany</item>
+        <item>Germany</item>
+        <item>Brasil</item>
+        <item>Brasil</item>
+        <item>England</item>
+        <item>Italy</item>
+        <item>England</item>
+        <item>England</item>
+        <item>Italy</item>
+        <item>Spain</item>
+        <item>Brasil</item>
+    </string-array>
+
+    <array name="fc_logos">
+        <item>@drawable/ajax</item>
+        <item>@drawable/bari</item>
+        <item>@drawable/bayer</item>
+        <item>@drawable/bayern</item>
+        <item>@drawable/borussia</item>
+        <item>@drawable/botafogo</item>
+        <item>@drawable/corinthians</item>
+        <item>@drawable/liverpool</item>
+        <item>@drawable/milan</item>
+        <item>@drawable/munchester_united</item>
+        <item>@drawable/newcastle_united</item>
+        <item>@drawable/roma</item>
+        <item>@drawable/valencia</item>
+        <item>@drawable/vasco_da_gama</item>
+    </array>
+
+</resources>
