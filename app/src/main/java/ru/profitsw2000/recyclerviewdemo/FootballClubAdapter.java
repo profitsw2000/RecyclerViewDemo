@@ -58,10 +58,10 @@ public class FootballClubAdapter extends BaseAdapter {
 
         final FootballClub footballClub = league.get(position);
 
-        ((TextView)convertView.findViewById(R.id.club_name)).setText(footballClub.getClubName());
-        ((TextView)convertView.findViewById(R.id.city_of_club)).setText(footballClub.getClubCity());
-        ((TextView)convertView.findViewById(R.id.country)).setText(footballClub.getCountry());
-        ((ImageView)convertView.findViewById(R.id.club_logo)).setImageResource(footballClub.getClubLogo());
+        clubViewHolder.textViewClubName.setText(footballClub.getClubName());
+        clubViewHolder.textViewCity.setText(footballClub.getClubCity());
+        clubViewHolder.textViewCountry.setText(footballClub.getCountry());
+        clubViewHolder.imageViewClubLogo.setImageResource(footballClub.getClubLogo());
 
         return convertView;
     }
