@@ -26,7 +26,7 @@ public class FCAdapterWithRecyclerView extends RecyclerView.Adapter<FCAdapterWit
     @NonNull
     @Override
     public ClubViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_view, parent, false) ;
+        View view = LayoutInflater.from(context).inflate(R.layout.item_view_2, parent, false) ;
         return new ClubViewHolder(view);
     }
 
