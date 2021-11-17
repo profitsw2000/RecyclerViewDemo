@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         appData = AppData.getAppData(getApplicationContext())   ;
         fcAdapterWithRecyclerView = new FCAdapterWithRecyclerView(this, appData.getLeague())    ;
 
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)   ;
+        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)   ;
         gridLayoutManager = new GridLayoutManager(this, 2)  ;
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)  ;
 
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(fcAdapterWithRecyclerView);
     }
 }
