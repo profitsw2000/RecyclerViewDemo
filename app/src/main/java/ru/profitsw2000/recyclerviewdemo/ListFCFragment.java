@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import java.util.List;
 
 public class ListFCFragment extends Fragment {
 
@@ -19,8 +22,11 @@ public class ListFCFragment extends Fragment {
     View view   ;
     private RecyclerView recyclerView;
     AppData appData ;
+    List<FootballClub> league   ;
     FCAdapterWithRecyclerView fcAdapterWithRecyclerView ;
     LinearLayoutManager linearLayoutManager ;
+    Button addFC   ;
+    Button modifyFC ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,12 +46,41 @@ public class ListFCFragment extends Fragment {
     {
         context = getContext()  ;
         recyclerView = view.findViewById(R.id.recycler_view_fc_list)    ;
+        configureButtons();
+
         appData = AppData.getAppData(context)   ;
-        fcAdapterWithRecyclerView = new FCAdapterWithRecyclerView(context, appData.getLeague())    ;
+        league = appData.getLeague()   ;
+        fcAdapterWithRecyclerView = new FCAdapterWithRecyclerView(context, league)    ;
 
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)   ;
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(fcAdapterWithRecyclerView);
+    }
+
+    private void configureButtons() {
+        addFC = view.findViewById(R.id.add_button)  ;
+        modifyFC = view.findViewById(R.id.modify_button)    ;
+
+        addFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (league.size() > 0){
+                    league.remove(0)    ;
+                    fcAdapterWithRecyclerView.notifyDataSetChanged();
+                }
+            }
+        });
+
+        modifyFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (league.size() > 0) {
+                    league.remove(league.size() - 1)    ;
+                    fcAdapterWithRecyclerView.notifyDataSetChanged();
+                }
+            }
+        });
+
     }
 }
