@@ -2,38 +2,27 @@ package ru.profitsw2000.recyclerviewdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    AppData appData ;
-    FCAdapterWithRecyclerView fcAdapterWithRecyclerView ;
-    LinearLayoutManager linearLayoutManager ;
-    GridLayoutManager gridLayoutManager ;
-    StaggeredGridLayoutManager staggeredGridLayoutManager   ;
+    FragmentManager fragmentManager ;
+    FragmentTransaction fragmentTransaction ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_fc_list) ;
-        appData = AppData.getAppData(getApplicationContext())   ;
-        fcAdapterWithRecyclerView = new FCAdapterWithRecyclerView(this, appData.getLeague())    ;
+        fragmentManager = getSupportFragmentManager()   ;
+        addFCListFragment();
+    }
 
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)   ;
-        gridLayoutManager = new GridLayoutManager(this, 2)  ;
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)  ;
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(fcAdapterWithRecyclerView);
+    private void addFCListFragment() {
+        fragmentTransaction = fragmentManager.beginTransaction()    ;
+        ListFCFragment listFCFragment = new ListFCFragment()    ;
+        fragmentTransaction.add(R.id.main_frame, listFCFragment)    ;
+        fragmentTransaction.commit()    ;
     }
 }
