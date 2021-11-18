@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -56,6 +58,12 @@ public class ListFCFragment extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(fcAdapterWithRecyclerView);
+        fcAdapterWithRecyclerView.SetOnItemClickListener(new FCAdapterWithRecyclerView.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void configureButtons() {

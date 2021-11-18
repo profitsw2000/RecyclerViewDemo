@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class FCAdapterWithRecyclerView extends RecyclerView.Adapter<FCAdapterWit
 
     private Context context ;
     private List<FootballClub> clubList ;
+    private OnItemClickListener itemClickListener;
 
     public FCAdapterWithRecyclerView(Context context, List<FootballClub> clubList) {
         this.context = context;
@@ -45,6 +47,14 @@ public class FCAdapterWithRecyclerView extends RecyclerView.Adapter<FCAdapterWit
         return clubList.size();
     }
 
+    public void SetOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener  ;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position)   ;
+    }
+
     class ClubViewHolder extends RecyclerView.ViewHolder {
         public TextView twClubName    ;
         public TextView twCity    ;
@@ -57,6 +67,16 @@ public class FCAdapterWithRecyclerView extends RecyclerView.Adapter<FCAdapterWit
             twCity = (TextView) view.findViewById(R.id.city_of_club)   ;
             twCountry = (TextView) view.findViewById(R.id.country)   ;
             clubLogoImage = (ImageView) view.findViewById(R.id.club_logo)   ;
+
+            clubLogoImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemClickListener != null){
+                        itemClickListener.onItemClick(view, getAdapterPosition());
+                    }
+                }
+            });
         }
+
     }
 }
