@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_button_text">Add</string>
     <string name="modify_butto_text">Modify</string>
+    <string name="enter_club_name">Enter club name:</string>
+    <string name="barcelona_string">Barcelona</string>
+    <string name="enter_city_name">Enter city name:</string>
+    <string name="enter_country_name">Enter country name:</string>
+    <string name="spain_string">Spain</string>
+    <string name="add_club_button">Add Club</string>
 </resources>
