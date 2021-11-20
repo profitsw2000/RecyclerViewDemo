@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ public class ListFCFragment extends Fragment {
     Context context ;
     View view   ;
     private RecyclerView recyclerView;
+    FragmentManager fragmentManager ;
     AppData appData ;
     List<FootballClub> league   ;
     FCAdapterWithRecyclerView fcAdapterWithRecyclerView ;
@@ -61,6 +64,7 @@ public class ListFCFragment extends Fragment {
         fcAdapterWithRecyclerView.SetOnItemClickListener(new FCAdapterWithRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
                 Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
             }
         });
@@ -73,10 +77,8 @@ public class ListFCFragment extends Fragment {
         addFC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (league.size() > 0){
-                    league.remove(0)    ;
-                    fcAdapterWithRecyclerView.notifyDataSetChanged();
-                }
+                AddClubFragment addClubFragment = new AddClubFragment() ;
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, addClubFragment).addToBackStack(null).commit()    ;
             }
         });
 
