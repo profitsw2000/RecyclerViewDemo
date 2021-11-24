@@ -3,6 +3,7 @@ package ru.profitsw2000.recyclerviewdemo;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,8 +27,10 @@ public class ListFCFragment extends Fragment {
     View view   ;
     private RecyclerView recyclerView;
     FragmentManager fragmentManager ;
+    FragmentActionListener fragmentActionListener   ;
     AppData appData ;
     List<FootballClub> league   ;
+    FootballClub footballClub   ;
     FCAdapterWithRecyclerView fcAdapterWithRecyclerView ;
     LinearLayoutManager linearLayoutManager ;
     Button addFC   ;
@@ -45,6 +48,21 @@ public class ListFCFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_list_f_c, container, false);
         initUI();
         return view ;
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Bundle bundle = getArguments()  ;
+        if (bundle != null) {
+            footballClub = bundle.getParcelable(FragmentActionListener.KEY_SELECTED_CLUB)   ;
+            league.add(footballClub)    ;
+            fcAdapterWithRecyclerView.notifyDataSetChanged();
+        }
+    }
+
+    public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {
+        this.fragmentActionListener = fragmentActionListener    ;
     }
 
     private void initUI()
@@ -77,8 +95,9 @@ public class ListFCFragment extends Fragment {
         addFC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddClubFragment addClubFragment = new AddClubFragment() ;
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, addClubFragment).addToBackStack(null).commit()    ;
+                Bundle bundle = new Bundle()    ;
+                bundle.putInt(FragmentActionListener.ACTION_KEY,FragmentActionListener.ACTION_VALUE_ADD_CLUB);
+                fragmentActionListener.onActionPerformed(bundle);
             }
         });
 
