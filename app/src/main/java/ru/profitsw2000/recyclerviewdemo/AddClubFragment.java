@@ -59,7 +59,6 @@ public class AddClubFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                 if (fragmentActionListener != null) {
                     Bundle bundle = new Bundle()    ;
                     footballClub = new FootballClub(clubName.getText().toString(), cityName.getText().toString(), country.getText().toString(), clubLogoID) ;

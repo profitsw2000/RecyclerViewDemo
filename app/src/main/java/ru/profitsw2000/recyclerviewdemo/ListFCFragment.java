@@ -82,8 +82,13 @@ public class ListFCFragment extends Fragment {
         fcAdapterWithRecyclerView.SetOnItemClickListener(new FCAdapterWithRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
-                Toast.makeText(context, Integer.toString(position), Toast.LENGTH_SHORT).show();
+                if (fragmentActionListener != null) {
+                    Bundle bundle = new Bundle()    ;
+                    footballClub = league.get(position) ;
+                    bundle.putInt(FragmentActionListener.ACTION_KEY,FragmentActionListener.ACTION_VALUE_CLUB_SELECTED);
+                    bundle.putParcelable(FragmentActionListener.KEY_SELECTED_CLUB, footballClub);
+                    fragmentActionListener.onActionPerformed(bundle);
+                }
             }
         });
     }

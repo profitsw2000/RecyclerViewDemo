@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         navigation.addFragment(addClubFragment, R.id.main_frame, false);
     }
 
+    private void addFCDescriptionFragment(Bundle bundle) {
+        FCDescriptionFragment fcDescriptionFragment = new FCDescriptionFragment()   ;
+        fcDescriptionFragment.setFragmentActionListener(this);
+        fcDescriptionFragment.setArguments(bundle);
+        navigation.addFragment(fcDescriptionFragment, R.id.main_frame, true);
+    }
+
     /**
      * Method to start fragment with description of selected football club
      * @param bundle - parameters from main fragment
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         int actionPerformed = bundle.getInt(ACTION_KEY) ;
         switch (actionPerformed) {
             case FragmentActionListener.ACTION_VALUE_CLUB_SELECTED:
+                addFCDescriptionFragment(bundle);
                 break;
             case FragmentActionListener.ACTION_VALUE_ADD_CLUB:
                 addFCDialogFragment();
