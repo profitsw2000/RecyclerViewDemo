@@ -55,9 +55,14 @@ public class ListFCFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
         Bundle bundle = getArguments()  ;
         if (bundle != null) {
-            footballClub = bundle.getParcelable(FragmentActionListener.KEY_SELECTED_CLUB)   ;
-            league.add(footballClub)    ;
-            fcAdapterWithRecyclerView.notifyDataSetChanged();
+            int action = bundle.getInt(fragmentActionListener.ACTION_KEY)   ;
+            if (action == fragmentActionListener.ACTION_VALUE_CLUB_ADDED){
+                footballClub = bundle.getParcelable(FragmentActionListener.KEY_SELECTED_CLUB)   ;
+                league.add(footballClub)    ;
+                fcAdapterWithRecyclerView.notifyDataSetChanged();
+                recyclerView.scrollToPosition(league.size() - 1);
+                bundle.clear();
+            }
         }
     }
 

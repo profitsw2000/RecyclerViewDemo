@@ -44,11 +44,17 @@ public class FCDescriptionFragment extends Fragment {
         if (bundle != null) {
             footballClub = bundle.getParcelable(FragmentActionListener.KEY_SELECTED_CLUB)   ;
 
+            bundle.clear();
             clubName.setText(footballClub.getClubName());
             cityName.setText(footballClub.getClubCity());
             country.setText(footballClub.getCountry());
             clubLogo.setImageResource(footballClub.getClubLogo());
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener) {
@@ -61,4 +67,5 @@ public class FCDescriptionFragment extends Fragment {
         country = (TextView) rootView.findViewById(R.id.description_country)    ;
         clubLogo = (ImageView) rootView.findViewById(R.id.description_logo) ;
     }
+
 }
